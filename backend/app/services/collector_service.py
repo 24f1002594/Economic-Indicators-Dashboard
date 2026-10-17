@@ -869,10 +869,10 @@ async def _ensure_trade_metadata(database: Database) -> None:
         """,
         (
             TRADE_SOURCE_KEY,
-            "Department of Commerce monthly trade report",
+            "Department of Commerce EIDB annual trade report (by HS chapter)",
             f"{settings.trade_base_url.rstrip('/')}{TRADE_REPORT_PATH}",
             settings.trade_refresh_hours * 60,
-            "Monthly USD values are converted to USD billion. The public report can be revised, delayed, or temporarily return no data.",
+            "Annual (fiscal-year) totals, summed across ~98 HS chapters and converted to USD billion. A fiscal year whose total implausibly diverges from the rest of the series is dropped rather than stored; the public report can also be delayed or temporarily return no data for the most recent year.",
         ),
     )
     for indicator_id, name in TRADE_INDICATORS.items():
@@ -893,7 +893,7 @@ async def _ensure_trade_metadata(database: Database) -> None:
                 name,
                 "trade",
                 TRADE_UNIT,
-                "Monthly merchandise trade from the Department of Commerce, shown in USD billion.",
+                "Annual merchandise trade from the Department of Commerce EIDB, shown in USD billion.",
             ),
         )
         await _bind_indicator_to_source(database, indicator_id, TRADE_SOURCE_KEY)
