@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+
+/* ── Ticker bar container ───────────────────────────────────────────────── */
+/* Figma: height 49px, dark navy gradient bg */
+.ticker-bar {
+  display: flex;
+  align-items: center;
+  height: 49px;
+  overflow: hidden;
+  background: linear-gradient(90deg,
+    rgba(7, 18, 42, 0.98) 0%,
+    rgba(31, 51, 92, 0.98) 30%,
+    rgba(0, 28, 93, 0.98) 100%);
+  border-top: 1px solid rgba(65, 93, 136, 0.4);
+  border-bottom: 1px solid rgba(65, 93, 136, 0.4);
+  white-space: nowrap;
+  position: relative;
+}
+
+/* ── LIVE badge ─────────────────────────────────────────────────────────── */
+/* Figma: Rectangle 11247 – width 92px, height 29px, left 24px,
+   background #D62D2A, border-radius 6.85px, border 1px #FF0000 solid */
+.ticker-bar__live {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 92px;
+  height: 29px;
+  background: #D62D2A;
+  border-radius: 6.85px;
+  border: 1px solid #FF0000;
+  margin-left: 24px;
+  z-index: 2;
+  position: relative;
+}
+
+.ticker-bar__live--stale {
+  background: #9a6700;
+  border-color: #fbbf24;
+}
+
+.ticker-bar__live--unavailable {
+  background: #7f1d1d;
+  border-color: #f87171;
+}
+
+/* Figma: "LIVE" – 39×20px, Segoe UI, 18px, weight 400, white */
+.ticker-bar__live-text {
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+/* Figma: plain white live-pulse dot, not a flag */
+.ticker-bar__live-flag {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid #FFACAC;
+  background: #ffffff;
+}
+
+/* ── Vertical divider ───────────────────────────────────────────────────── */
+/* Figma: 38.43px height, 1.07px width, #415D88 color */
+.ticker-bar__divider {
+  flex-shrink: 0;
+  width: 1px;
+  height: 38.43px;
+  background: #415D88;
+  margin: 0 10px;
+  opacity: 0.8;
+}
+
+/* ── Scrolling track ────────────────────────────────────────────────────── */
+.ticker-bar__track {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.ticker-bar__tape {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  min-width: max-content;
+  animation: marquee 45s linear infinite;
+}
+
+/* ── Individual ticker item ─────────────────────────────────────────────── */
+.ticker-bar__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 20px;
+  position: relative;
+}
+
+/* Figma: vertical separator – 38.43px height, #415D88, 1.07px */
+.ticker-bar__sep {
+  display: inline-block;
+  width: 1.07px;
+  height: 38.43px;
+  background: #415D88;
+  margin-right: 18px;
+  opacity: 0.8;
+  flex-shrink: 0;
+  vertical-align: middle;
+  align-self: center;
+}
+
+/* Figma: NIFTY BANK label – Manrope Bold 17.08px, white */
+.ticker-bar__symbol {
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 17px;
+  line-height: 21.32px;
+}
+
+/* Figma: price – Segoe UI Semibold 17.08px */
+.ticker-bar__price {
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 21.32px;
+}
+
+/* Figma: positive = #69F6B8 (SENSEX, NIFTY IT) */
+.ticker-bar__price.positive {
+  color: #69F6B8;
+}
+
+/* Figma: negative = #FF716A or #FF0000 (NIFTY BANK) */
+.ticker-bar__price.negative {
+  color: #FF716A;
+}

@@ -1,0 +1,111 @@
+/* ── Title bar ──────────────────────────────────────────────────────────── */
+/* Figma: Frame 2087327377 – width 1248px, height 85px, candlestick bg image */
+.title-bar {
+  position: relative;
+  width: 100%;
+  height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Figma: background image (candlestick chart) */
+.title-bar__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.36;
+}
+
+/* Dark overlay gradient */
+.title-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 18, 38, 0.5) 0%, rgba(6, 9, 17, 0.7) 100%);
+  z-index: 1;
+}
+
+/* Figma: "ECONOMIC INDICATOR" – Segoe UI Bold 700, 36px, white */
+.title-bar__title {
+  position: relative;
+  z-index: 2;
+  width: auto;
+  max-width: calc(100% - 180px);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', 'Inter', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+  text-shadow: 0 0 40px rgba(15, 203, 240, 0.25);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.title-bar__nav {
+  position: absolute;
+  right: 16px;
+  z-index: 3;
+  display: flex;
+  gap: 8px;
+}
+
+.title-bar__btn {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 5px;
+  background: rgba(7, 16, 29, 0.75);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 10px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.title-bar__btn:hover {
+  background: rgba(15, 203, 240, 0.12);
+  border-color: rgba(15, 203, 240, 0.35);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .title-bar__title {
+    width: auto;
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 767px) {
+  .title-bar {
+    height: 56px;
+    justify-content: flex-start;
+    padding-left: 14px;
+  }
+
+  .title-bar__title {
+    max-width: 210px;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+  }
+
+  .title-bar__nav {
+    right: 10px;
+    gap: 6px;
+  }
+
+  .title-bar__btn {
+    font-size: 10px;
+    padding: 4px 7px;
+  }
+}
