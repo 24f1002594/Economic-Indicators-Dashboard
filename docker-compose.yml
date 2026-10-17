@@ -1,0 +1,63 @@
+# Local development / evaluation convenience only.
+#
+# Production deploys the frontend and API as separate services on separate
+# hosts, each over HTTPS, per deployment/README.md — that separation is a
+# requirement, not something this file replaces. This compose file exists so
+# the full stack (API + Postgres + frontend) can be brought up with one
+# command on a single machine for local development or panel evaluation.
+#
+# Postgres is bound to 127.0.0.1 only (not 0.0.0.0), so it is not reachable
+# from outside this machine; the API reaches it over the internal compose
+# network by service name ("db"), never through the published host port.
+#
+# Usage:
+#   cp .env.example .env            # fill in POSTGRES_PASSWORD / JWT_SECRET_KEY
+#   docker compose up --build
+#   docker compose exec api uv run python -m app.create_user panel@example.com --role viewer
+
+services:
+  db:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: economic_dashboard
+      POSTGRES_USER: economic_dashboard
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U economic_dashboard -d economic_dashboard"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: ./backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      APP_ENV: development
+      DATABASE_URL: postgresql://economic_dashboard:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}@db:5432/economic_dashboard
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:?set JWT_SECRET_KEY in .env, 32+ random characters}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:8080}
+      COLLECTOR_ENABLED: "true"
+    ports:
+      - "127.0.0.1:8000:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8000/api/v1}
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "127.0.0.1:8080:8080"
+
+volumes:
+  db-data:
