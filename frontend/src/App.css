@@ -1,0 +1,188 @@
+/* ── Login page ─────────────────────────────────────────────────────────── */
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: radial-gradient(ellipse at top left, rgba(6, 18, 38, 1) 0%, #060911 70%);
+}
+
+.login-card {
+  width: min(420px, 100%);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  background: #101827;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+}
+
+.login-card__header {
+  position: relative;
+  height: 90px;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(16, 28, 56, 0.9), rgba(6, 9, 17, 1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.login-card__chart-bg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.6;
+}
+
+.login-card__title {
+  position: relative;
+  z-index: 1;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.10em;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+.login-card__body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.login-card__subtitle {
+  color: #94a3b8;
+  font-size: 13px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.login-card__field {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 16px;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.login-card__field span {
+  color: #94a3b8;
+}
+
+.login-card__field input {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  background: #060911;
+  color: #ffffff;
+  padding: 10px 12px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.login-card__field input:focus {
+  outline: none;
+  border-color: rgba(56, 189, 248, 0.5);
+}
+
+.login-card__field input::placeholder {
+  color: #475569;
+}
+
+.login-card__error {
+  display: block;
+  color: #ef4444;
+  font-size: 12px;
+  margin-bottom: 12px;
+  padding: 8px 10px;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 4px;
+}
+
+.login-card__submit {
+  width: 100%;
+  padding: 11px 16px;
+  border: 0;
+  border-radius: 6px;
+  background: #38bdf8;
+  color: #06101d;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.login-card__submit:hover:not(:disabled) {
+  background: #7dd3fc;
+}
+
+.login-card__preview-link {
+  display: block;
+  margin-top: 16px;
+  text-align: center;
+  font-size: 12px;
+  color: #38bdf8;
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+.login-card__preview-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.login-card__submit:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.login-card__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ── App state (error, critical) ─────────────────────────────────────────── */
+.app-state {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 24px;
+  gap: 16px;
+}
+
+.app-state h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.app-state p {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.app-state button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  background: #38bdf8;
+  color: #06101d;
+  font-weight: 700;
+}
+
+/* ── Error toast ─────────────────────────────────────────────────────────── */
+.error-toast {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 100;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  color: #ef4444;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 16px;
+  backdrop-filter: blur(8px);
+  animation: enter 0.3s ease-out;
+}

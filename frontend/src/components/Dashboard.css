@@ -1,0 +1,111 @@
+.dashboard-shell {
+  position: relative;
+  min-height: 100vh;
+  background: #000000;
+}
+
+.dashboard-shell::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: url('/figma-assets/page-bg.png') center / cover no-repeat;
+}
+
+.dashboard-shell::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: rgba(0, 0, 0, 0.95);
+}
+
+.dashboard-shell > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Dashboard grid ─────────────────────────────────────────────────────── */
+/* Figma: 2-column grid, each card 582×544px, gap ~16px, max-width ~1214px  */
+.dashboard-grid {
+  width: 100%;
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* ── KPI row ────────────────────────────────────────────────────────────── */
+.kpi-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  margin-bottom: 10px;
+}
+
+/* ── Flag & icon emojis ─────────────────────────────────────────────────── */
+.flag-emoji {
+  font-size: 28px;
+  line-height: 1;
+  display: block;
+}
+
+.icon-emoji {
+  font-size: 50px;
+  line-height: 1;
+  display: block;
+  opacity: 0.55;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
+}
+
+/* ── Error / No-data state ──────────────────────────────────────────────── */
+.no-data-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.no-data-state__icon {
+  font-size: 24px;
+  opacity: 0.6;
+}
+
+.chart-empty {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  padding: 24px;
+  border: 1px dashed rgba(148, 163, 184, 0.35);
+  border-radius: 8px;
+  color: #a9b7c9;
+  font-size: 13px;
+  line-height: 1.45;
+  text-align: center;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    max-width: 620px;
+  }
+}
+
+@media (max-width: 767px) {
+  .dashboard-grid {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .kpi-row {
+    flex-direction: column;
+  }
+}
