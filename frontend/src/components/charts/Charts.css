@@ -1,0 +1,64 @@
+/* ── Shared chart wrapper ───────────────────────────────────────────────── */
+.chart-wrapper {
+  flex: 1;
+  min-height: 0;
+  /* Fill remaining height in card body */
+  position: relative;
+}
+
+/* ── Custom tooltip ─────────────────────────────────────────────────────── */
+.chart-tooltip {
+  background: rgba(10, 16, 30, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: 'Segoe UI', 'Inter', sans-serif;
+  font-size: 12px;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.chart-tooltip__label {
+  display: block;
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 4px;
+}
+
+.chart-tooltip__row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: 12px;
+  color: #cccccc;
+}
+
+.chart-tooltip__swatch {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+/* .indicator-card switches to height:auto below 1023px, so flex:1 has no
+   definite parent height to size against and the chart collapses to 0px.
+   Give it an explicit height instead of relying on flex-grow. */
+@media (max-width: 1023px) {
+  .chart-wrapper {
+    flex: none;
+    height: 280px;
+  }
+}
+
+@media (max-width: 767px) {
+  .chart-wrapper {
+    height: 230px;
+  }
+}
