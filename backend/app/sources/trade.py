@@ -138,7 +138,10 @@ class TradeClient:
             response = await self._client.post(
                 bootstrap.update_path,
                 json=payload,
-                headers={"Referer": str(self._client.base_url.join(TRADE_REPORT_PATH))},
+                headers={
+                    "Referer": str(self._client.base_url.join(TRADE_REPORT_PATH)),
+                    "X-Livewire": "true",
+                },
             )
             response.raise_for_status()
         except httpx.HTTPStatusError as error:
