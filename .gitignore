@@ -1,0 +1,33 @@
+# Local environment configuration and secrets
+.env
+.env.*
+!.env.example
+backend/.env
+backend/.env.*
+!backend/.env.example
+
+# Python virtual environments and generated files
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Frontend dependencies, tooling cache and build artifacts
+node_modules/
+frontend/.vite/
+frontend/dist/
+*.tsbuildinfo
+vite.config.d.ts
+vite.config.js
+
+# Local design references and assignment brief (not part of the submitted source)
+Economic Indicator 1.png
+Economic Indicator Assignment.fig
+Interview_Round_2_Full_Stack_Application_Challenge.docx
+
+# Local agent/editor configuration
+.agents/
+.vscode/
+
+# Operating-system metadata
+.DS_Store
