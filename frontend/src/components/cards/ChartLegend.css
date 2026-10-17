@@ -1,0 +1,60 @@
+/* ── Chart legend ───────────────────────────────────────────────────────── */
+/* Figma: India + World labels at right side, #cccccc Segoe UI Semibold 16px */
+.chart-legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 18px;
+  flex-wrap: wrap;
+  height: 28px;
+  padding: 0 4px;
+  margin-bottom: 2px;
+}
+
+.chart-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  /* Figma: #cccccc, Segoe UI Semibold, 16px */
+  color: #CCCCCC;
+  font-family: 'Segoe UI', 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.chart-legend__label {
+  white-space: nowrap;
+}
+
+.chart-legend__indicator {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* Figma: 16×16px rect, border-radius 3px with exact gradient */
+.chart-legend__indicator--bar {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+}
+
+/* Figma: line swatch – 22px wide, 2.47px stroke, with centre dot (7px circle) */
+.chart-legend__indicator--line {
+  width: 22px;
+  height: 3px;
+  border-radius: 9999px;
+  position: relative;
+}
+
+.chart-legend__indicator--line::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: inherit;
+}
